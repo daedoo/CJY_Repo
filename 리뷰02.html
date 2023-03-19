@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>리뷰02</title>
+</head>
+<body>
+  <h1>리뷰02</h1>
+  
+  <table border="1">
+    <tr>
+      <td>아이디</td>
+      <td><input type="text" name="memberId"></td>
+    </tr>
+    <tr>
+      <td colspan="2" id="resultBox01">아이디 괜찮은지</td>
+      
+    </tr>
+    <tr>
+      <td>비밀번호</td>
+      <td><input type="text" name="memberPwd"></td>
+    </tr>
+    <tr>
+      <td colspan="2" id="resultBox02">비번 괜찮은지</td>
+      
+    </tr>
+    <tr>
+      <td>닉네임</td>
+      <td><input type="text" name="memberNick"></td>
+    </tr>
+    <tr>
+      <td colspan="2" id="resultBox03">닉네임 괜찮은지</td>
+      
+    </tr>
+    <tr>
+      <td colspan="2"><button id="joinBtn">회원가입</button></td>
+
+    </tr>
+  </table>
+  <script>
+    // 회원가입 버튼 클릭 시
+    // 아이디가 admin이 아닌지 체크
+    // 비밀번호는 4글자 이상인지 체크
+    // 닉네임이 3글자 이상인지 체크
+    // 조건에 맞지 않으면 하단에 메세지 띄우기( ex. 아이디 문제있음)
+    // 조건에 맞으면 사용가능이라고 메세지 띄우기
+
+    const joinBtn=document.querySelector("#joinBtn");
+    joinBtn.addEventListener("click",function(){
+
+  
+      const id=document.querySelector("input[name=memberId]").value;
+      const pw=document.querySelector("input[name=memberId]").value;
+      const nick=document.querySelector("input[name=memberId]").value;
+      
+      //중복제거 작업, const로 하니까 오류났었음
+      var resultBox01=document.querySelector("#resultBox01").innerText;
+      var resultBox02=document.querySelector("#resultBox02").innerText;
+      var resultBox03=document.querySelector("#resultBox03").innerText;
+
+        if(id=="admin"){
+          resultBox01
+          ="admin은 ID로 사용할 수 없습니다.";
+        }else{
+          resultBox01
+          ="사용가능";
+        }
+
+        if(pw.length<4){
+          resultBox02
+          ="비밀번호는 4글자 이상으로 설정해주세요.";
+        }else{
+          resultBox02
+          ="사용가능";
+        }
+        
+        if(nick.length<3){
+          resultBox03
+          ="닉네임은 3글자 이상으로 설정해주세요.";
+        }else{
+        resultBox03
+          ="사용가능";
+        }
+    });
+
+
+
+  </script>
+  
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
